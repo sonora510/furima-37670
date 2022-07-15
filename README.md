@@ -40,7 +40,7 @@
 | Column | Type | Options |
 | ------ | ---- | ------- |
 | user | references | foreign_key:true |
-| product | reference | foreign_key:true |
+| item | reference | foreign_key:true |
 ## Association
 * has_one :addressbook
 * belong_to :user
@@ -49,8 +49,8 @@
 ## addressbooks
 | Column | Type | Options |
 | ------ | ---- | ------- |
-| order_id | references | foreign_key:true |
-| post_code_id | string | null:false |
+| order | references | foreign_key:true |
+| post_code | string | null:false |
 | prefecture_id | integer | null:false |
 | city | string | null:false |
 | banti | string | null:false |
