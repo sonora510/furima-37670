@@ -18,13 +18,9 @@ RSpec.describe User, type: :model do
         expect(@user).to be_valid
       end
 
-      it 'passwordが登録できるとき' do
-        @user.password  
-        expect(@user).to be_valid
-      end
-
-      it 'password確認' do
-        @user.password_confirmation
+      it 'passwordhaは6文字以上の半角英数字で登録できる' do
+        @user.password = 'test1234'
+        @user.password_confirmation = 'test1234'
         expect(@user).to be_valid
       end
 
@@ -69,7 +65,6 @@ RSpec.describe User, type: :model do
       it 'emailが重複した場合は登録できない' do
         @user.save
         another_user = FactoryBot.build(:user, email: @user.email)
-       #binding.pry
         another_user.email = @user.email
         another_user.valid?
         expect(another_user.errors.full_messages).to include("Email has already been taken")
@@ -77,7 +72,6 @@ RSpec.describe User, type: :model do
       it 'emailに@を含まないと登録できない' do
         @user.email = 'testmail'
         @user.valid?
-        #binding.pry
         expect(@user.errors.full_messages).to include("Email is invalid")     
       end
       it 'passwordが空では登録できない' do
@@ -89,7 +83,6 @@ RSpec.describe User, type: :model do
         @user.password = "123456"
         @user.password_confirmation = "1234567"
         @user.valid?
-        #binding.pry
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
       it 'passwordが5文字以下では登録できない' do
@@ -116,13 +109,11 @@ RSpec.describe User, type: :model do
       it 'familyname zenが空では登録できない' do
         @user.family_name_zen = '' 
         @user.valid?
-        #binding.pry
         expect(@user.errors.full_messages).to include("Family name zen can't be blank")
       end
       it 'familyname zenが全角（漢字・ひらがな・カタカナ）でなければ登録できない' do
         @user.family_name_zen = 'kana'
         @user.valid?
-        #binding.pry
         expect(@user.errors.full_messages).to include("Family name zen is invalid")
       end
       it 'firstname zenが空では登録できない' do
@@ -133,7 +124,6 @@ RSpec.describe User, type: :model do
       it 'firstname zenが全角（漢字・ひらがな・カタカナ）でなければ登録できない' do
         @user.first_name_zen = 'kana'
         @user.valid?
-        #binding.pry
         expect(@user.errors.full_messages).to include("First name zen is invalid")
       end
       it 'familyname kanaが空では登録できない' do
@@ -149,7 +139,6 @@ RSpec.describe User, type: :model do
       it 'firstname kanaが空では登録できない' do
         @user.first_name_kana = ''
         @user.valid?
-        #binding.pry
         expect(@user.errors.full_messages).to include("First name kana is invalid")
       end
       it 'firstname kanaが全角（カタカナ）でなければ登録できない' do
