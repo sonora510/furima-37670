@@ -6,10 +6,19 @@ class User < ApplicationRecord
 
          with_options presence: true do
           validates :nickname
-          validates :first_name_zen, format: {with: /\A[ぁ-んァ-ン一-龥]/, message: "Full-width characters"}
-          validates :family_name_zen, format: {with: /\A[ぁ-んァ-ン一-龥]/, message: "Full-width characters"}
-          validates :first_name_kana, format: {with: /\A[ァ-ヶー－]+\z/, message: "First_name_kana Full-width katakana characters"}
-          validates :family_name_kana, format: {with: /\A[ァ-ヶー－]+\z/, message: "Family_name_kana kana Full-width katakana characters"}
+
+          # 全角ひらがな、カタカナ、漢字正規表現 
+          with_options format: { with: /\A[ぁ-んァ-ン一-龥]/ } do
+            validates :first_name_zen 
+            validates :family_name_zen
+          end
+
+          # 全角カタカナ正規表現
+          with_options format: { with: /\A[ァ-ヶー－]+\z/ } do
+            validates :first_name_kana
+            validates :family_name_kana
+          end
+
           validates :birthday
           validates :password, :password_confirmation, format: { with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9\d]{6,}/ }
          end
