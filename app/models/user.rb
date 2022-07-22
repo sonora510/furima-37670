@@ -8,7 +8,7 @@ class User < ApplicationRecord
           validates :nickname
 
           # 全角ひらがな、カタカナ、漢字正規表現 
-          with_options format: { with: /\A[ぁ-んァ-ン一-龥]/ } do
+          with_options format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ } do
             validates :first_name_zen 
             validates :family_name_zen
           end
