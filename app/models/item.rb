@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
 
   # ジャンルの選択時「--」の時は保存できない
-  with_options numerricality: { other_than: 1 } do
+  with_options numericality: { other_than: 1 } do
     validates :category_id
     validates :delivery_day_id
     validates :delivery_cost_id
