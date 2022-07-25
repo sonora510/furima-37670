@@ -16,7 +16,6 @@ RSpec.describe Item, type: :model do
     # 異常テスト
     context '出品に失敗するとき' do
       it 'userが紐づいていなければ出品できない' do
-        binding.pry
         @item.user = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("User must exist")
