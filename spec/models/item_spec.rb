@@ -9,7 +9,6 @@ RSpec.describe Item, type: :model do
     # 正常テスト
     context '出品できる時' do
       it '商品が出品できる' do
-        # binding.pry
         expect(@item).to be_valid
       end
     end
@@ -19,7 +18,6 @@ RSpec.describe Item, type: :model do
       it 'imageが空では登録できない' do
         @item.image = nil
         @item.valid?
-        # binding.pry
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it '商品名が空では登録できない' do
