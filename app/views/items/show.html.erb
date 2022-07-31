@@ -30,7 +30,7 @@
 
     <%= link_to "商品の編集", item_path(@item), method: :get, class: "item-red-btn" %>
     <p class="or-text">or</p>
-    <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
+    <%= link_to "削除", item_path(@item.id), method: :delete, class:"item-destroy" %>
 
     <%# ログインユーザーと出品者が不一致の場合 %>
     <% else %>
