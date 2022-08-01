@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   # 非ログインユーザーをログインページへ誘導
   before_action :authenticate_user!, only: [:new, :edit, :create, :destroy]
-
+  # 情報の引き渡し
   before_action :set_item, only: [:show, :destroy, :edit, :update]
 
   def index
@@ -26,12 +26,15 @@ class ItemsController < ApplicationController
 
   def destroy
     if current_user.id == @item.user_id
-    @item.destroy
+      @item.destroy
     end
     redirect_to action: :index
   end
 
   def edit
+    if current_user.id != @item.user_id
+    redirect_to action: :index
+    end
   end
 
   def update
@@ -53,4 +56,5 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
 end
