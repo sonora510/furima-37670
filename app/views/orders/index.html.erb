@@ -32,7 +32,7 @@
     <%# /支払額の表示 %>
 
     <%= form_with model: @order_addressbook, url: item_orders_path, class: 'transaction-form-wrap',local: true do |f| %>
-          <%#= render 'shared/error_messages', model: @order_addressbook %>
+          <%= render 'shared/error_messages', model: @order_addressbook %>
 
     <%# カード情報の入力 %>
     <div class='credit-card-form'>

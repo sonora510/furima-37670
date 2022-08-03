@@ -20,7 +20,7 @@ class OrderAddressbook
   def save
     # 購入情報を保存し、変数Orderへ代入 (カラム名: 保存したい値)
     order = Order.create(item_id: item_id, user_id: user_id)
-    binding.pry
+    # binding.pry
     # 住所を保存
     # order_idは変数orderのidと指定する
     Addressbook.create(order_id: order.id, post_code: post_code, prefecture_id: prefecture_id, city: city, banti: banti,bilding_name: bilding_name, phone_num: phone_num)

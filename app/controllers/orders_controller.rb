@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
 
   # 商品情報の引き渡し
-  before_action :set_item, only: [:index]
+  before_action :set_item, only: [:index, :create]
 
   def index
     @order_addressbook = OrderAddressbook.new
@@ -14,10 +14,12 @@ class OrdersController < ApplicationController
 
     if @order_addressbook.valid?
       @order_addressbook.save
+      redirect_to root_path
+    else
+      render 'index'
     #@order =Order.create(order_params)
     #Addressbook.create(addressbook_params)
     end
-    redirect_to root_path
   end
 
   private
