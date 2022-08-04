@@ -1,9 +1,12 @@
 class ItemsController < ApplicationController
   # 非ログインユーザーをログインページへ誘導
   before_action :authenticate_user!, only: [:new, :edit, :create, :destroy]
+
   # 情報の引き渡し
   before_action :set_item, only: [:show, :destroy, :edit, :update]
   
+  # 商品売却済みの場合はトップページへ誘導
+  before_action :sale_out, only: [:edit]
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -58,4 +61,8 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def sale_out
+    return redirect_to root_path unless @item.order.nil?
+  end
+ 
 end
