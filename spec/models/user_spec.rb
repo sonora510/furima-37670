@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
       @user = FactoryBot.build(:user)
     end
 
-    # できる子
+    # 可能テスト
     context 'ユーザー新規登録ができるとき' do
       it 'nicknameが登録できるとき' do
         @user.nickname = 'aaaaaa'
@@ -50,7 +50,7 @@ RSpec.describe User, type: :model do
       end
     end
 
-    # できない
+    # 不可テスト
     context 'ユーザー登録が失敗するとき' do
       it 'nicknameが空では登録できない' do
         @user.nickname = ''
