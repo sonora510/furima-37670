@@ -4,6 +4,6 @@ Rails.application.routes.draw do
    get 'items/new', to: 'items#new'
 
   resources :items do
-    resources :orders, only: [:index, :nuw, :create]
+    resources :orders, only: [:index, :create]
   end
 end
