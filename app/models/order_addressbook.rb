@@ -2,7 +2,7 @@ class OrderAddressbook
   include ActiveModel::Model
 
   # orderテーブル、addressbookテーブルへ保存するカラム
-  attr_accessor :token, :user_id, :item_id, :order_id, :post_code, :prefecture_id, :city, :banti, :bilding_name, :phone_num
+  attr_accessor :token, :user_id, :item_id, :post_code, :prefecture_id, :city, :banti, :bilding_name, :phone_num
 
   # バリデーション
   with_options presence: true do
