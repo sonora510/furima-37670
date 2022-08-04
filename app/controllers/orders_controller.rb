@@ -46,9 +46,4 @@ class OrdersController < ApplicationController
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
   end
-
-  # 発送情報ここは不要になる？
-  # def addressbook_params
-  # params.permit(:order, :post_code, :prefecture_id, :city, :banti, :bilding_name, :phone_num).merge(order_id: @order.id)
-  # end
 end
