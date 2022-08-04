@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :create, :destroy]
   # 情報の引き渡し
   before_action :set_item, only: [:show, :destroy, :edit, :update]
+  
 
   def index
     @items = Item.all.order('created_at DESC')
