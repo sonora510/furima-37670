@@ -17,13 +17,18 @@ describe OrderAddressbook, type: :model do
 
       it '建物名が空でも保存ができる' do
         @order_addressbook.bilding_name = ''
-        #binding.pry
         expect(@order_addressbook).to be_valid
       end
     end
 
     # できない子
     context '内容に問題がある時' do
+      it 'tokenが空では登録できない' do
+        @order_addressbook.token = nil
+        @order_addressbook.valid?
+        expect(@order_addressbook.errors.full_messages).to include("Token can't be blank")
+      end
+
       it '郵便番号が空では登録できない' do
         @order_addressbook.post_code = nil
         @order_addressbook.valid?
