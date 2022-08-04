@@ -8,7 +8,7 @@ describe OrderAddressbook, type: :model do
     sleep 0.1
   end
 
-  # できる子
+  # 可能テスト
   describe '商品購入機能' do
     context '内容に問題ない場合' do
       it '商品購入できる時' do
@@ -21,7 +21,7 @@ describe OrderAddressbook, type: :model do
       end
     end
 
-    # できない子
+    # 不可テスト
     context '内容に問題がある時' do
       it 'tokenが空では登録できない' do
         @order_addressbook.token = nil
@@ -67,6 +67,12 @@ describe OrderAddressbook, type: :model do
 
       it '電話番号が12桁以上では登録できない' do
         @order_addressbook.phone_num = '090222233334'
+        @order_addressbook.valid?
+        expect(@order_addressbook.errors.full_messages).to include("Phone num is invalid")
+      end
+
+      it '電話番号が9桁以下では購入できない' do
+        @order_addressbook.phone_num = '123456789'
         @order_addressbook.valid?
         expect(@order_addressbook.errors.full_messages).to include("Phone num is invalid")
       end
