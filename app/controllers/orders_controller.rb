@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+
     @order_addressbook = OrderAddressbook.new(order_params)
 
     if @order_addressbook.valid?
@@ -34,7 +35,7 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order_addressbook)
     .permit(:post_code, :prefecture_id, :city, :banti, :bilding_name,:phone_num)
-    .merge(item_id: params[:item_id], user_id: current_user.id)
+    .merge(item_id: params[:item_id], user_id: current_user.id, token: params[:token])
   end
 
   # 発送情報ここは不要になる？

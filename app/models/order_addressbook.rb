@@ -2,7 +2,7 @@ class OrderAddressbook
   include ActiveModel::Model
 
   # orderテーブル、addressbookテーブルへ保存するカラム
-  attr_accessor :user_id, :item_id, :order_id, :post_code, :prefecture_id, :city, :banti, :bilding_name, :phone_num
+  attr_accessor :token, :user_id, :item_id, :order_id, :post_code, :prefecture_id, :city, :banti, :bilding_name, :phone_num
 
   # バリデーション
   with_options presence: true do
@@ -14,7 +14,7 @@ class OrderAddressbook
     validates :banti
     validates :phone_num, format: { with: /\A0(\d{1}?\d{4}|\d{2}?\d{3}|\d{3}?\d{2}|\d{4}?\d{1})?\d{4}\z|\A0[5789]0?\d{4}?\d{4}\z/ }
   end
-  validates :prefecture_id, numericality: { other_than: 0, message: "Can't be blank"}
+  validates :prefecture_id, numericality: { other_than: 1, message: "Can't be blank"}
 
   # データをテーブルへ保存
   def save
